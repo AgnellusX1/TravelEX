@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'file:///F:/Academics/Projects/Android/travel_ex/lib/services/wrapper.dart';
-
+import 'package:travel_ex/services/wrapper.dart';
 void main() {
   runApp(MyApp());
 }
