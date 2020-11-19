@@ -1,28 +1,77 @@
 import 'package:flutter/material.dart';
+import 'package:travel_ex/screens/home.dart';
 
-class Add extends StatelessWidget {
+class Add extends StatefulWidget {
+  @override
+  _AddState createState() => _AddState();
+}
+
+
+class _AddState extends State<Add> {
+  final _controller=TextEditingController();
+  String name="";
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-        backgroundColor: Colors.blue,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('Design the Add Adventure here'),
-            ],
-          ),
+              Text(name),
+
+              Container(
+                child:TextField(
+                  controller:_controller,
+                  decoration:InputDecoration(
+                    enabledBorder:OutlineInputBorder(
+                      borderSide:BorderSide(color:Colors.transparent),
+                      borderRadius:BorderRadius.all(Radius.circular(40))
+
+                    ),
+                    focusedBorder:OutlineInputBorder(
+                        borderSide:BorderSide(color:Colors.transparent),
+                        borderRadius:BorderRadius.all(Radius.circular(40))
+
+                    ),
+                    hintText:"Enter your memories",
+                    filled:true,
+                    fillColor: Colors.grey[200]
+
+                  )
+                ),
+                padding: EdgeInsets.all(32),
+              ),
+              Container(
+                width:double.infinity,
+                child:FlatButton(
+                  child: Text("Submit"),
+                  color:Colors.red,
+                  onPressed:(){
+
+
+
+                    // setState((){
+                    //   name= _controller.text;
+                    // });
+                  },
+                ),
+                padding: EdgeInsets.all(32),
+              ),
+            ]
+
         )
-      ),
+
+
     );
   }
+
+
 }
 
 //TODO
 
-// Design: Add a TextBox to write about the Adventure
-//         Add an Imageview such that the user can add a certain image
+// Design: Add a TextBox to write about the Adventure-Done
+//         Add an Image view such that the user can add a certain image
 //         Add an option to add the location
 //
 // Implementation: On Submit, add the details to the SQLLite DB
