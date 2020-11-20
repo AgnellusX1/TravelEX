@@ -10,125 +10,59 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-
-                child: Stack(
-
-
-                  children: <Widget>[
-                    Positioned(
-                      child: Image.asset(
-                        "assets/bg.jpg",
-                      ),
-                    ),
-                    Container(
-                      padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                      child: Text(
-                        'TravelEX',
-                        style: TextStyle(
-                            fontSize: 80.0, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-
-
-                  ],
+      body:SafeArea(
+        child:ListView(
+          padding:EdgeInsets.symmetric(horizontal:18.0),
+          children:<Widget>[
+            Column(
+              children:<Widget>[
+                SizedBox(height:80),
+                Image.asset('assets/travel.png'),
+                //for text login
+                //SizedBox(height:40),
+                //Text('Login Page',style:TextStyle(fontSize:25,color: Colors.greenAccent),)
+              ],
+            ),
+            SizedBox(height:60.0,),
+            TextField(
+              decoration:InputDecoration(
+                labelText:"Email",
+                labelStyle:TextStyle(fontSize:20),
+                filled: true,
+              ),
+            ),
+            SizedBox(height:60.0,),
+            TextField(
+              //for password to be hidden
+              obscureText:true,
+              decoration:InputDecoration(
+                labelText:"Password",
+                labelStyle:TextStyle(fontSize:20),
+                filled: true,
+              ),
+            ),
+            SizedBox(height:20.0),
+            Column(
+              children:<Widget>[
+                ButtonTheme(
+                  height:50,
+                  disabledColor: Colors.blueAccent,
+                  child: RaisedButton(
+                    child:Text('Login',style:TextStyle(color:Colors.white,),),
+                    onPressed:(){
+                      Navigator.push(context, MaterialPageRoute(builder: (context) =>Home()),
+                      );
+                    },
                 ),
-              ),
-              Container(
-                  padding: EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
-                  child: Column(
-                    children: <Widget>[
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Email Id',
-                            labelStyle: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            // hintText: 'EMAIL',
-                            // hintStyle: ,
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green))),
-                      ),
-                      SizedBox(height: 10.0),
-                      TextField(
-                        decoration: InputDecoration(
-                            labelText: 'Password ',
-                            labelStyle: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            focusedBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green))),
-                        obscureText: true,
-                      ),
-                      Container(
-                          height: 40.0,
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20.0),
-                            shadowColor: Colors.greenAccent,
-                            color: Colors.green,
-                            elevation: 10.0,
-                            child: GestureDetector(
-                              onTap: () {},
-                              child: Center(
-                                child: Text(
-                                  'SIGNUP',
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat'),
-                                ),
-                              ),
-                            ),
-                          )),
-                      SizedBox(height: 30.0),
-                      Container(
-                        height: 40.0,
-                        color: Colors.transparent,
-                        child: Container(
-                          decoration: BoxDecoration(
-                              border: Border.all(
-                                  color: Colors.black,
-                                  style: BorderStyle.solid,
-                                  width: 1.0),
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(20.0)),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context).pop();
-                            },
-                            child: Center(
-                              child: Text('Go Back',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Montserrat')),
+                ),
+                SizedBox(height:20,),
+                Text('New User? Sign up here')
+              ],
+            )
 
-                            ),
-
-                          ),
-                        ),
-
-                      ),
-
-                    ],
-                  )),
-              FloatingActionButton.extended(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>Home()),
-                  );
-                },
-                label: Text('Begin a New Adventure'),
-                tooltip: 'Add a New Adventure',
-              ),
-
-            ]
-
-        )
+          ]
+        ),
+      ),
     );
   }
 }
