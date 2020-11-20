@@ -7,19 +7,18 @@ class Home extends StatelessWidget {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-
-          actions:<Widget> [
+          actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.search,
-                color: Colors.white,),
+              icon: Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
             )
           ],
           title: Text("TravelEX"),
         ),
         body: Center(
-
           child: Column(
-
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
@@ -35,14 +34,17 @@ class Home extends StatelessWidget {
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) =>Add()),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Add()),
             );
           },
           label: Text('Begin a New Adventure'),
           tooltip: 'Add a New Adventure',
         ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,// This trailing comma makes auto-formatting nicer for build methods.
+        floatingActionButtonLocation: FloatingActionButtonLocation
+            .centerDocked, // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }
