@@ -57,6 +57,7 @@ flutter:
     - assets/navarrow.png
     - assets/icon.png
     - assets/bg.jpg
+    - assets/travel.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
