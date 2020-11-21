@@ -6,10 +6,9 @@ class Add extends StatefulWidget {
   _AddState createState() => _AddState();
 }
 
-
 class _AddState extends State<Add> {
-  final _controller=TextEditingController();
-  String name="";
+  final _controller = TextEditingController();
+  String name = "";
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +24,39 @@ class _AddState extends State<Add> {
           title: Text("Add A New Memory"),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(name),
-              Container(
+          Text(name),
+          Container(
+            child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                        focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    hintText: "Enter your Memories",
+                    filled: true,
+                    fillColor: Colors.grey[200])),
+            padding: EdgeInsets.all(32),
+          ),
+          Container(
+            width: double.infinity,
+            child: FlatButton(
+              child: Text("Submit"),
+              color: Colors.red,
+              onPressed: () {
+                // setState((){
+                //   name= _controller.text;
+                // });
+              },
+            ),
+            padding: EdgeInsets.all(32),
+          ),
+        ]));
+        Container(
                 child:TextField(
                     controller:_controller,
                     decoration:InputDecoration(

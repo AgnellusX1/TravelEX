@@ -59,8 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
   //   });
   // }
 
-
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -73,10 +71,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        actions:<Widget> [
+        actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search,
-              color: Colors.white,),
+            icon: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
           )
         ],
         title: Text(widget.title),
@@ -114,17 +114,19 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) =>NewAdventure()),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => NewAdventure()),
           );
         },
         label: Text('Begin a New Adventure'),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,// This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButtonLocation: FloatingActionButtonLocation
+          .centerDocked, // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
-
 
 // Design the Add Entry Screen in the Below Function
 
@@ -406,8 +408,6 @@ class _NewAdventure extends State<NewAdventure>
           ),
         ));
   }
-
-
 }
 
 //This is the first Page for Reference
