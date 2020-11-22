@@ -26,6 +26,21 @@ class _AddState extends State<Add> {
     Hive.box('adventure').add(model);
   }
 
+  void addAdventure(String title, String description, String image) {
+    //  Automated Stuff
+    //  Get the Current Date
+    var now = new DateTime.now();
+    var formatter = new DateFormat('yyyy-MM-dd');
+    String date = formatter.format(now);
+    //  Get the Current Location
+
+    final location = "asdf";
+
+    //  Add to DB
+    final newAdventure = Model(title, date, location, image, description);
+    AddBox.add(newAdventure);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +49,6 @@ class _AddState extends State<Add> {
         ),
         body: Container(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text(name),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -75,12 +89,9 @@ class _AddState extends State<Add> {
                 onPressed: () {
                   final title = _controllertitle.text;
                   final desc = _controllerdesc.text;
-                  var now = new DateTime.now();
-                  var formatter = new DateFormat('yyyy-MM-dd');
-                  String formattedDate = formatter.format(now);
-                  final newMemory =
-                      Model(formattedDate, formattedDate, title, desc);
-                  AddBox.add(newMemory);
+                  final image = "asdf";
+
+                  addAdventure(title, desc, image);
 
                   Fluttertoast.showToast(
                       msg: "Added Memory",

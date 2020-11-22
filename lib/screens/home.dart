@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(Icons.location_on_rounded),
-                                    Text(memory.id)
+                                    Text(memory.location)
                                   ],
                                 ),
                               ),
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(
-                                  memory.location,
+                                  memory.description,
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.6)),
                                 ),
