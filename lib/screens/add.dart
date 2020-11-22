@@ -70,18 +70,14 @@ class _AddState extends State<Add> {
             child: FloatingActionButton.extended(
               label: Text("Submit"),
               onPressed: () {
-                final key = _controllertitle.text;
-                final value = _controllerdesc.text;
+                final title = _controllertitle.text;
+                final desc = _controllerdesc.text;
                 var now = new DateTime.now();
                 var formatter = new DateFormat('yyyy-MM-dd');
                 String formattedDate = formatter.format(now);
-
                 final newMemory =
-                Model(formattedDate, formattedDate, value, value);
-
+                Model(formattedDate, formattedDate, title, desc);
                 AddBox.add(newMemory);
-
-                // AddBox.put(key, value);
 
                 Fluttertoast.showToast(
                     msg: "Added Memory",

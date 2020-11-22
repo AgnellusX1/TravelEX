@@ -50,26 +50,51 @@ class _HomeState extends State<Home> {
 
                         return Card(
 
-                          child: ListTile(
+                          clipBehavior: Clip.antiAlias,
+                          child: Column(
+                            children: [
+                              ListTile(
+                                title: Text(memory.title),
+                                subtitle: Text(
+                                  memory.dateTime,
+                                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                                ),
+                                trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.location_on_rounded),
+                                    Text(memory.id)
+                                  ],
+                                ),
+                              ),
+                              Image.asset('assets/img1.jpg'),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Text(memory.location,
+                                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                                ),
+                              ),
 
-                            title: Text(
-                              //This is the Title
-                              memory.title,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 22),
-                            ),
-                            subtitle: Text(
-                              //This is the date
-                              memory.dateTime,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            // isThreeLine: Text(
-                            // //  This is the loaction
-                            //   location,
-                            //   style: TextStyle(
-                            //       fontWeight: FontWeight.bold, fontSize: 16),
-                            // ),
+                              // ButtonBar(
+                              //   alignment: MainAxisAlignment.start,
+                              //   children: [
+                              //     FlatButton(
+                              //       textColor: const Color(0xFF6200EE),
+                              //       onPressed: () {
+                              //         // Perform some action
+                              //       },
+                              //       child: const Text('ACTION 1'),
+                              //     ),
+                              //     FlatButton(
+                              //       textColor: const Color(0xFF6200EE),
+                              //       onPressed: () {
+                              //         // Perform some action
+                              //       },
+                              //       child: const Text('ACTION 2'),
+                              //     ),
+                              //   ],
+                              // ),
+                            ],
                           ),
                         );
                       },
