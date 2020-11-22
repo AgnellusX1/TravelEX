@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:travel_ex/services/wrapper.dart';
 
-void main() {
+import 'package:hive/hive.dart';
+import 'package:travel_ex/dbconnect/model.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final dbDocument = await path_provider.getApplicationDocumentsDirectory();
+  Hive.init(dbDocument.path);
+  Hive.registerAdapter(ModelAdapter());
+  final adventuresBox = await Hive.openBox('adventure');
   runApp(MyApp());
 }
 

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:travel_ex/screens/home.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hive/hive.dart';
+import 'package:travel_ex/dbconnect/model.dart';
+import 'package:intl/intl.dart';
 
 class Add extends StatefulWidget {
   @override
@@ -10,6 +13,18 @@ class _AddState extends State<Add> {
   final _controllertitle = TextEditingController();
   final _controllerdesc = TextEditingController();
   String name = "";
+  Box AddBox;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    AddBox = Hive.box('adventure');
+  }
+
+  void addMemory(Model model) {
+    Hive.box('adventure').add(model);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +69,29 @@ class _AddState extends State<Add> {
             width: double.infinity,
             child: FloatingActionButton.extended(
               label: Text("Submit"),
-              onPressed: () {},
+              onPressed: () {
+                final key = _controllertitle.text;
+                final value = _controllerdesc.text;
+                var now = new DateTime.now();
+                var formatter = new DateFormat('yyyy-MM-dd');
+                String formattedDate = formatter.format(now);
+
+                final newMemory =
+                Model(formattedDate, formattedDate, value, value);
+
+                AddBox.add(newMemory);
+
+                // AddBox.put(key, value);
+
+                Fluttertoast.showToast(
+                    msg: "Added Memory",
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0);
+              },
             ),
             padding: EdgeInsets.all(32),
           ),
