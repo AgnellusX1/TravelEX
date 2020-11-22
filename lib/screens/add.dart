@@ -7,7 +7,7 @@ class Add extends StatefulWidget {
 }
 
 class _AddState extends State<Add> {
-  final _controllertitle=TextEditingController();
+  final _controllertitle = TextEditingController();
   final _controllerdesc = TextEditingController();
   String name = "";
 
@@ -17,57 +17,50 @@ class _AddState extends State<Add> {
         appBar: AppBar(
           title: Text("Add A New Memory"),
         ),
-        body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(name),
-              Container(
-                child: TextField(
-                    controller: _controllertitle,
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(40))),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(40))),
-                        hintText: "Title",
-                        filled: true,
-                        fillColor: Colors.grey[200])),
-                padding: EdgeInsets.all(32),
-              ),
-              Container(
-                child: TextField(
-                    controller: _controllerdesc,
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(40))),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(Radius.circular(40))),
-                        hintText: "Enter your memories",
-                        filled: true,
-                        fillColor: Colors.grey[200])),
-                padding: EdgeInsets.all(32),
-              ),
-              Container(
-                width: double.infinity,
-                child: FlatButton(
-                  child: Text("Submit"),
-                  color: Colors.red,
-                  onPressed: () {
-                    // setState((){
-                    //   name= _controller.text;
-                    // });
-                  },
-                ),
-                padding: EdgeInsets.all(32),
-              ),
-            ]));
+        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
+            Widget>[
+          Text(name),
+          Container(
+            child: TextField(
+                controller: _controllertitle,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    hintText: "Title",
+                    filled: true,
+                    fillColor: Colors.grey[200])),
+            padding: EdgeInsets.all(32),
+          ),
+          Container(
+            child: TextField(
+                controller: _controllerdesc,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    hintText: "Enter your memories",
+                    filled: true,
+                    fillColor: Colors.grey[200])),
+            padding: EdgeInsets.all(32),
+          ),
+          Container(
+            width: double.infinity,
+            child: FloatingActionButton.extended(
+              label: Text("Submit"),
+              onPressed: () {},
+            ),
+            padding: EdgeInsets.all(32),
+          ),
+        ]));
   }
 }
-
 
 //TODO
 
