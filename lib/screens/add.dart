@@ -30,68 +30,72 @@ class _AddState extends State<Add> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Add A New Memory"),
+          title: Text("Add A New Adventure"),
         ),
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: <
-            Widget>[
-          Text(name),
-          Container(
-            child: TextField(
-                controller: _controllertitle,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    hintText: "Title",
-                    filled: true,
-                    fillColor: Colors.grey[200])),
-            padding: EdgeInsets.all(32),
-          ),
-          Container(
-            child: TextField(
-                controller: _controllerdesc,
-                decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.transparent),
-                        borderRadius: BorderRadius.all(Radius.circular(40))),
-                    hintText: "Enter your memories",
-                    filled: true,
-                    fillColor: Colors.grey[200])),
-            padding: EdgeInsets.all(32),
-          ),
-          Container(
-            width: double.infinity,
-            child: FloatingActionButton.extended(
-              label: Text("Submit"),
-              onPressed: () {
-                final title = _controllertitle.text;
-                final desc = _controllerdesc.text;
-                var now = new DateTime.now();
-                var formatter = new DateFormat('yyyy-MM-dd');
-                String formattedDate = formatter.format(now);
-                final newMemory =
-                Model(formattedDate, formattedDate, title, desc);
-                AddBox.add(newMemory);
-
-                Fluttertoast.showToast(
-                    msg: "Added Memory",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0);
-              },
+        body: Container(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Text(name),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                  controller: _controllertitle,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      hintText: "Name your Adventure",
+                      filled: true,
+                      fillColor: Colors.grey[200])),
             ),
-            padding: EdgeInsets.all(32),
-          ),
-        ]));
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                  controller: _controllerdesc,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(Radius.circular(40))),
+                      hintText: "Describe it",
+                      filled: true,
+                      fillColor: Colors.grey[200])),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton.extended(
+                label: Text("Add Adventure"),
+                onPressed: () {
+                  final title = _controllertitle.text;
+                  final desc = _controllerdesc.text;
+                  var now = new DateTime.now();
+                  var formatter = new DateFormat('yyyy-MM-dd');
+                  String formattedDate = formatter.format(now);
+                  final newMemory =
+                      Model(formattedDate, formattedDate, title, desc);
+                  AddBox.add(newMemory);
+
+                  Fluttertoast.showToast(
+                      msg: "Added Memory",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.red,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
+                  Navigator.pop(context);
+                },
+              ),
+            ),
+          ]),
+        ));
   }
 }
 

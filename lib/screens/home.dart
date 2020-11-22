@@ -44,12 +44,9 @@ class _HomeState extends State<Home> {
                   builder: (context, Box ReadBox, _) {
                     return ListView.separated(
                       itemBuilder: (context, index) {
-                        final memory=ReadBox.getAt(index) as Model;
-
-
+                        final memory = ReadBox.getAt(index) as Model;
 
                         return Card(
-
                           clipBehavior: Clip.antiAlias,
                           child: Column(
                             children: [
@@ -57,10 +54,11 @@ class _HomeState extends State<Home> {
                                 title: Text(memory.title),
                                 subtitle: Text(
                                   memory.dateTime,
-                                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6)),
                                 ),
                                 trailing: Row(
-                                    mainAxisSize: MainAxisSize.min,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(Icons.location_on_rounded),
                                     Text(memory.id)
@@ -70,30 +68,12 @@ class _HomeState extends State<Home> {
                               Image.asset('assets/img1.jpg'),
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
-                                child: Text(memory.location,
-                                  style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                                child: Text(
+                                  memory.location,
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6)),
                                 ),
                               ),
-
-                              // ButtonBar(
-                              //   alignment: MainAxisAlignment.start,
-                              //   children: [
-                              //     FlatButton(
-                              //       textColor: const Color(0xFF6200EE),
-                              //       onPressed: () {
-                              //         // Perform some action
-                              //       },
-                              //       child: const Text('ACTION 1'),
-                              //     ),
-                              //     FlatButton(
-                              //       textColor: const Color(0xFF6200EE),
-                              //       onPressed: () {
-                              //         // Perform some action
-                              //       },
-                              //       child: const Text('ACTION 2'),
-                              //     ),
-                              //   ],
-                              // ),
                             ],
                           ),
                         );
