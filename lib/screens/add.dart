@@ -78,16 +78,18 @@ class _AddState extends State<Add> {
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Center(
               child: _image == null
-                  ? Text("No Image Selected")
-                  : Image(
-                      height: 200,
-                      width: 200,
-                      fit: BoxFit.contain,
-                      image: FileImage(_image)),
-            ),
-            IconButton(
-              onPressed: getImage,
-              icon: Icon(Icons.image),
+                  ? IconButton(
+                      onPressed: getImage,
+                      icon: Icon(Icons.image),
+                    )
+                  : GestureDetector(
+                      onTap: getImage,
+                      child: Image(
+                          height: 300,
+                          width: 300,
+                          fit: BoxFit.contain,
+                          image: FileImage(_image)),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
