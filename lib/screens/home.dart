@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_ex/dbconnect/model.dart';
@@ -45,7 +46,6 @@ class _HomeState extends State<Home> {
                     return ListView.separated(
                       itemBuilder: (context, index) {
                         final memory = ReadBox.getAt(index) as Model;
-
                         return Card(
                           clipBehavior: Clip.antiAlias,
                           child: Column(
@@ -65,7 +65,11 @@ class _HomeState extends State<Home> {
                                   ],
                                 ),
                               ),
-                              Image.asset('assets/img1.jpg'),
+                              Center(
+                                child: memory.image == null
+                                    ? Text("No Image was added")
+                                    : Image.memory(base64Decode(memory.image)),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.all(16.0),
                                 child: Text(

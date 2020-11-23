@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -19,6 +20,7 @@ class _AddState extends State<Add> {
   String name = "";
   Box AddBox;
   File _image;
+  String base64;
   final picker = ImagePicker();
 
   @override
@@ -38,6 +40,8 @@ class _AddState extends State<Add> {
     setState(() {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
+        final bytes = File(_image.path).readAsBytesSync();
+        base64 = base64Encode(bytes);
       } else {
         print('No image selected.');
       }
@@ -53,12 +57,6 @@ class _AddState extends State<Add> {
     //  Get the Current Location
 
     final location = "asdf";
-
-    //Get Image Data
-    // File _image;
-    // final PickedFile pickedImage = await picker.getImage(source: ImageSource.gallery);
-    // if (pickedImage == null) return;
-    // String image = pickedImage.path;
 
     //  Add to DB
     final newAdventure = Model(title, date, location, image, description);
@@ -126,12 +124,11 @@ class _AddState extends State<Add> {
                 onPressed: () {
                   final title = _controllertitle.text;
                   final desc = _controllerdesc.text;
-                  final image = "asdf";
 
                   //Validation to make sure the Title and Description is not Empty
                   if (title != "" && desc != "") {
                     //  If not empty
-                    addAdventure(title, desc, image);
+                    addAdventure(title, desc, base64);
 
                     Fluttertoast.showToast(
                         msg: "Added Memory",
