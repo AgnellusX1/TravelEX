@@ -70,6 +70,11 @@ class _AddState extends State<Add> {
           title: Text("Add A New Adventure"),
         ),
         body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [Colors.blue, Colors.red])),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             Center(
               child: _image == null

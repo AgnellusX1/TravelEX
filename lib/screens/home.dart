@@ -44,6 +44,7 @@ class _HomeState extends State<Home> {
                   valueListenable: ReadBox.listenable(),
                   builder: (context, Box ReadBox, _) {
                     return ListView.separated(
+
                       itemBuilder: (context, index) {
                         final memory = ReadBox.getAt(index) as Model;
                         return Card(
