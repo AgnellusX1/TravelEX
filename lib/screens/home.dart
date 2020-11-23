@@ -20,6 +20,38 @@ class _HomeState extends State<Home> {
     ReadBox = Hive.box('adventure');
   }
 
+  showAlertDialog(BuildContext context, int index) {
+    Widget cancelButton = FlatButton(
+      child: Text("Go back"),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Its Okay"),
+      onPressed: () {
+        ReadBox.deleteAt(index);
+        Navigator.of(context).pop();
+      },
+    );
+
+    AlertDialog alert = AlertDialog(
+      title: Text("Delete"),
+      content: Text("You sure, You may miss it ?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,42 +76,51 @@ class _HomeState extends State<Home> {
                   valueListenable: ReadBox.listenable(),
                   builder: (context, Box ReadBox, _) {
                     return ListView.separated(
-
                       itemBuilder: (context, index) {
                         final memory = ReadBox.getAt(index) as Model;
-                        return Card(
-                          clipBehavior: Clip.antiAlias,
-                          child: Column(
-                            children: [
-                              ListTile(
-                                title: Text(memory.title),
-                                subtitle: Text(
-                                  memory.dateTime,
-                                  style: TextStyle(
-                                      color: Colors.black.withOpacity(0.6)),
+                        return GestureDetector(
+                          onLongPress: () {
+                            //  Delete the Card
+
+                            showAlertDialog(context, index);
+
+                            //   ReadBox.deleteAt(index);
+                          },
+                          child: Card(
+                            clipBehavior: Clip.antiAlias,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Text(memory.title),
+                                  subtitle: Text(
+                                    memory.dateTime,
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.6)),
+                                  ),
+                                  trailing: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(Icons.location_on_rounded),
+                                      Text(memory.location)
+                                    ],
+                                  ),
                                 ),
-                                trailing: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.location_on_rounded),
-                                    Text(memory.location)
-                                  ],
+                                Center(
+                                  child: memory.image == null
+                                      ? Text("No Image was added")
+                                      : Image.memory(
+                                          base64Decode(memory.image)),
                                 ),
-                              ),
-                              Center(
-                                child: memory.image == null
-                                    ? Text("No Image was added")
-                                    : Image.memory(base64Decode(memory.image)),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(16.0),
-                                child: Text(
-                                  memory.description,
-                                  style: TextStyle(
-                                      color: Colors.black.withOpacity(0.6)),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Text(
+                                    memory.description,
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.6)),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         );
                       },
