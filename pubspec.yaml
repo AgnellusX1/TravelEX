@@ -43,6 +43,10 @@ dependencies:
   hive: ^1.4.4+1
   hive_flutter: ^0.3.1
 
+  image_picker: ^0.6.7+14
+  image: ^2.1.19
+
+  path: ^1.7.0
 
   fluttertoast: ^7.1.1
 

@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_ex/dbconnect/model.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Add extends StatefulWidget {
   @override
@@ -14,6 +18,8 @@ class _AddState extends State<Add> {
   final _controllerdesc = TextEditingController();
   String name = "";
   Box AddBox;
+  File _image;
+  final picker = ImagePicker();
 
   @override
   void initState() {
@@ -26,7 +32,19 @@ class _AddState extends State<Add> {
     Hive.box('adventure').add(model);
   }
 
-  void addAdventure(String title, String description, String image) {
+  Future getImage() async {
+    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
+
+  Future addAdventure(String title, String description, String image) {
     //  Automated Stuff
     //  Get the Current Date
     var now = new DateTime.now();
@@ -35,6 +53,12 @@ class _AddState extends State<Add> {
     //  Get the Current Location
 
     final location = "asdf";
+
+    //Get Image Data
+    // File _image;
+    // final PickedFile pickedImage = await picker.getImage(source: ImageSource.gallery);
+    // if (pickedImage == null) return;
+    // String image = pickedImage.path;
 
     //  Add to DB
     final newAdventure = Model(title, date, location, image, description);
@@ -49,6 +73,19 @@ class _AddState extends State<Add> {
         ),
         body: Container(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            Center(
+              child: _image == null
+                  ? Text("No Image Selected")
+                  : Image(
+                      height: 200,
+                      width: 200,
+                      fit: BoxFit.contain,
+                      image: FileImage(_image)),
+            ),
+            IconButton(
+              onPressed: getImage,
+              icon: Icon(Icons.image),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
@@ -91,17 +128,30 @@ class _AddState extends State<Add> {
                   final desc = _controllerdesc.text;
                   final image = "asdf";
 
-                  addAdventure(title, desc, image);
+                  //Validation to make sure the Title and Description is not Empty
+                  if (title != "" && desc != "") {
+                    //  If not empty
+                    addAdventure(title, desc, image);
 
-                  Fluttertoast.showToast(
-                      msg: "Added Memory",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.red,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                  Navigator.pop(context);
+                    Fluttertoast.showToast(
+                        msg: "Added Memory",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                    Navigator.pop(context);
+                  } else {
+                    Fluttertoast.showToast(
+                        msg: "Don't be Shy",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.CENTER,
+                        timeInSecForIosWeb: 1,
+                        backgroundColor: Colors.red,
+                        textColor: Colors.white,
+                        fontSize: 16.0);
+                  }
                 },
               ),
             ),

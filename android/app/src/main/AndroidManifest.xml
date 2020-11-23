@@ -2,7 +2,8 @@
     package="com.agnellusx1.travel_ex">
    <application
         android:label="travel_ex"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+       android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
