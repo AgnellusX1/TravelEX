@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "28844857149",
+    "firebase_url": "https://travelex-9e8e6.firebaseio.com",
+    "project_id": "travelex-9e8e6",
+    "storage_bucket": "travelex-9e8e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:28844857149:android:60e850ca0e503a30fb1754",
+        "android_client_info": {
+          "package_name": "com.agnellusx1.travel_ex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28844857149-4uk13viin7s9f9nktd1dsdp2sjq254jg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKUGrg2EhcVOH1w1H936hc4YENjzyrnbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28844857149-4uk13viin7s9f9nktd1dsdp2sjq254jg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
