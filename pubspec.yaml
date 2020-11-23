@@ -74,6 +74,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/travelex.gif
     - assets/bg.jpg
     - assets/travel.png
     - assets/img1.jpg

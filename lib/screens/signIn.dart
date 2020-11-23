@@ -11,73 +11,60 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return new Scaffold(
       body: SafeArea(
-        child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 18.0),
-            children: <Widget>[
-              Column(
-                children: <Widget>[
-                  SizedBox(height: 80),
-                  Image.asset('assets/travel.png'),
-                  //for text login
-                  //SizedBox(height:40),
-                  //Text('Login Page',style:TextStyle(fontSize:25,color: Colors.greenAccent),)
-                ],
-              ),
-              SizedBox(
-                height: 60.0,
-              ),
-              TextField(
+        child: ListView(padding: EdgeInsets.all(18.0), children: <Widget>[
+          Image.asset(
+            "assets/travelex.gif",
+            height: 250,
+            width: 250,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(
-                  labelText: "Email",
-                  labelStyle: TextStyle(fontSize: 20),
-                  filled: true,
-                ),
-              ),
-              SizedBox(
-                height: 60.0,
-              ),
-              TextField(
-                //for password to be hidden
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    hintText: "Email",
+                    filled: true,
+                    fillColor: Colors.grey[200])),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+                textAlign: TextAlign.center,
                 obscureText: true,
                 decoration: InputDecoration(
-                  labelText: "Password",
-                  labelStyle: TextStyle(fontSize: 20),
-                  filled: true,
-                ),
-              ),
-              SizedBox(height: 20.0),
-              Column(
-                children: <Widget>[
-                  ButtonTheme(
-                    height: 50,
-                    disabledColor: Colors.blueAccent,
-                    child: FloatingActionButton.extended(
-                        label: Text(
-                          'Login',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => Home()),
-                          );
-                        }),
-                    //   child: RaisedButton(
-                    //     child:Text('Login',style:TextStyle(color:Colors.white,),),
-                    //     onPressed:(){
-                    //       Navigator.push(context, MaterialPageRoute(builder: (context) =>Home()),
-                    //       );
-                    //     },
-                    // ),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text('New User? Sign up here')
-                ],
-              )
-            ]),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue),
+                        borderRadius: BorderRadius.all(Radius.circular(40))),
+                    hintText: "Password",
+                    filled: true,
+                    fillColor: Colors.grey[200])),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(child: Text('New User? Sign up here')),
+          )
+        ]),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text('Login'),
+        icon: Icon(Icons.done),
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => Home()),
+          );
+        },
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
