@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_ex/dbconnect/model.dart';
 import 'package:travel_ex/screens/add.dart';
@@ -57,15 +58,15 @@ class _HomeState extends State<Home> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: Colors.white,
-              ),
-            )
-          ],
-          title: Text("TravelEX"),
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(
+          //       Icons.search,
+          //       color: Colors.white,
+          //     ),
+          //   )
+          // ],
+          title: Text("TravelEX",style: GoogleFonts.pacifico(),),
         ),
         body: Center(
           child: Column(
@@ -91,7 +92,7 @@ class _HomeState extends State<Home> {
                             child: Column(
                               children: [
                                 ListTile(
-                                  title: Text(memory.title),
+                                  title: Text(memory.title,style: GoogleFonts.lobster(),),
                                   subtitle: Text(
                                     memory.dateTime,
                                     style: TextStyle(
@@ -100,7 +101,12 @@ class _HomeState extends State<Home> {
                                   trailing: Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(Icons.location_on_rounded),
+                                      IconButton(
+                                        icon: Icon(Icons.location_on_rounded),
+                                        onPressed:(){
+                                        //  Open Maps and Show the Location
+                                        },
+                                      ),
                                       Text(memory.location)
                                     ],
                                   ),
@@ -115,8 +121,7 @@ class _HomeState extends State<Home> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     memory.description,
-                                    style: TextStyle(
-                                        color: Colors.black.withOpacity(0.6)),
+                                    style: GoogleFonts.dancingScript(fontSize: 20),
                                   ),
                                 ),
                               ],
@@ -130,9 +135,16 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
+
+
+
             ],
+
+
           ),
+
         ),
+
 
         bottomNavigationBar: BottomAppBar(
           child: Container(
@@ -152,6 +164,7 @@ class _HomeState extends State<Home> {
         floatingActionButtonLocation: FloatingActionButtonLocation
             .centerDocked, // This trailing comma makes auto-formatting nicer for build methods.
       ),
+
     );
   }
 }
