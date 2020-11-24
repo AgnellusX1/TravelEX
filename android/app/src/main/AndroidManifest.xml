@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.agnellusx1.travel_ex">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
    <application
         android:label="travel_ex"
         android:icon="@mipmap/ic_launcher"
