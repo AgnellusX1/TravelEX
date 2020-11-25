@@ -1,9 +1,11 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoder/geocoder.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_ex/dbconnect/model.dart';
 import 'package:intl/intl.dart';
@@ -17,17 +19,36 @@ class Add extends StatefulWidget {
 class _AddState extends State<Add> {
   final _controllertitle = TextEditingController();
   final _controllerdesc = TextEditingController();
-  String name = "";
+  String loc;
   Box AddBox;
   File _image;
   String base64;
   final picker = ImagePicker();
+
+  Position _position;
+  StreamSubscription<Position> _streamSubscription;
+  Address _address;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     AddBox = Hive.box('adventure');
+
+    var locationOptions =
+        LocationOptions(accuracy: LocationAccuracy.high, distanceFilter: 10);
+    _streamSubscription = Geolocator()
+        .getPositionStream(locationOptions)
+        .listen((Position position) {
+      setState(() {
+        print(position);
+        _position = position;
+        final coordinates =
+            new Coordinates(position.latitude, position.longitude);
+        convertCoordinatesToAddress(coordinates)
+            .then((value) => _address = value);
+      });
+    });
   }
 
   void addMemory(Model model) {
@@ -48,6 +69,12 @@ class _AddState extends State<Add> {
     });
   }
 
+  Future<Address> convertCoordinatesToAddress(Coordinates coordinates) async {
+    var addresses =
+        await Geocoder.local.findAddressesFromCoordinates(coordinates);
+    return addresses.first;
+  }
+
   Future addAdventure(String title, String description, String image) {
     //  Automated Stuff
     //  Get the Current Date
@@ -56,11 +83,16 @@ class _AddState extends State<Add> {
     String date = formatter.format(now);
     //  Get the Current Location
 
-    final location = "asdf";
+    // final location = _address.addressLine;
+    final String location = _address.locality;
 
-    //  Add to DB
-    final newAdventure = Model(title, date, location, image, description);
-    AddBox.add(newAdventure);
+    if (location.isEmpty) {
+      print(location);
+    } else {
+      //  Add to DB
+      final newAdventure = Model(title, date, location, image, description);
+      AddBox.add(newAdventure);
+    }
   }
 
   @override
@@ -76,20 +108,27 @@ class _AddState extends State<Add> {
                   end: Alignment.bottomLeft,
                   colors: [Colors.blue, Colors.red])),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Center(
-              child: _image == null
-                  ? IconButton(
-                      onPressed: getImage,
-                      icon: Icon(Icons.image),
-                    )
-                  : GestureDetector(
-                      onTap: getImage,
-                      child: Image(
-                          height: 300,
-                          width: 300,
-                          fit: BoxFit.contain,
-                          image: FileImage(_image)),
-                    ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: _image == null
+                    ? IconButton(
+                        onPressed: getImage,
+                        icon: Icon(
+                          Icons.add_photo_alternate_rounded,
+                          size: 50,
+                          color: Colors.white,
+                        ),
+                      )
+                    : GestureDetector(
+                        onTap: getImage,
+                        child: Image(
+                            height: 300,
+                            width: 300,
+                            fit: BoxFit.contain,
+                            image: FileImage(_image)),
+                      ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
