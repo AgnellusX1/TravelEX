@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:travel_ex/dbconnect/model.dart';
@@ -14,11 +15,38 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Box ReadBox;
 
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+  var initializationSettingsAndroid;
+  var initializationSettingsIOS;
+  var initializationSettings;
+
+  void notification1() async {
+    await showNotification();
+  }
+
+  Future<void> showNotification() async {
+    var android1 = AndroidNotificationDetails('id', 'channel ', 'description',
+        priority: Priority.high, importance: Importance.max);
+    var platform = new NotificationDetails(android: android1);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'TravelEX', 'Memory Deleted', platform,
+        payload: 'Memory Deleted Successful');
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     ReadBox = Hive.box('adventure');
+
+    initializationSettingsAndroid =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
+
+    initializationSettings =
+        InitializationSettings(android: initializationSettingsAndroid);
+
+    flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
 
   showAlertDialog(BuildContext context, int index) {
@@ -31,8 +59,9 @@ class _HomeState extends State<Home> {
     Widget continueButton = FlatButton(
       child: Text("Its Okay"),
       onPressed: () {
+        notification1();
         ReadBox.deleteAt(index);
-        Navigator.of(context).pop();
+        Navigator.pop(context);
       },
     );
 
@@ -58,15 +87,10 @@ class _HomeState extends State<Home> {
     return Container(
       child: Scaffold(
         appBar: AppBar(
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(
-          //       Icons.search,
-          //       color: Colors.white,
-          //     ),
-          //   )
-          // ],
-          title: Text("TravelEX",style: GoogleFonts.pacifico(),),
+          title: Text(
+            "TravelEX",
+            style: GoogleFonts.pacifico(),
+          ),
         ),
         body: Center(
           child: Column(
@@ -84,15 +108,16 @@ class _HomeState extends State<Home> {
                             //  Delete the Card
 
                             showAlertDialog(context, index);
-
-                            //   ReadBox.deleteAt(index);
                           },
                           child: Card(
                             clipBehavior: Clip.antiAlias,
                             child: Column(
                               children: [
                                 ListTile(
-                                  title: Text(memory.title,style: GoogleFonts.lobster(),),
+                                  title: Text(
+                                    memory.title,
+                                    style: GoogleFonts.lobster(),
+                                  ),
                                   subtitle: Text(
                                     memory.dateTime,
                                     style: TextStyle(
@@ -103,8 +128,8 @@ class _HomeState extends State<Home> {
                                     children: [
                                       IconButton(
                                         icon: Icon(Icons.location_on_rounded),
-                                        onPressed:(){
-                                        //  Open Maps and Show the Location
+                                        onPressed: () {
+                                          //  Open Maps and Show the Location
                                         },
                                       ),
                                       Text(memory.location)
@@ -121,7 +146,8 @@ class _HomeState extends State<Home> {
                                   padding: const EdgeInsets.all(16.0),
                                   child: Text(
                                     memory.description,
-                                    style: GoogleFonts.dancingScript(fontSize: 20),
+                                    style:
+                                        GoogleFonts.dancingScript(fontSize: 20),
                                   ),
                                 ),
                               ],
@@ -135,16 +161,9 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
-
-
-
             ],
-
-
           ),
-
         ),
-
 
         bottomNavigationBar: BottomAppBar(
           child: Container(
@@ -153,6 +172,7 @@ class _HomeState extends State<Home> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
+            // notification1();
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => Add()),
@@ -164,16 +184,6 @@ class _HomeState extends State<Home> {
         floatingActionButtonLocation: FloatingActionButtonLocation
             .centerDocked, // This trailing comma makes auto-formatting nicer for build methods.
       ),
-
     );
   }
 }
-
-//TODO:
-//
-// Design: Design the List here that would show saved Adventures
-//         Design the Skeleton card/Container that will be used to fill the list
-//
-// Implementation: Implement the list
-//           Connect the System to the SQLLite DB
-//           Implement the card view in a way that it would fetch each Adventure

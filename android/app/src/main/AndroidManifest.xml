@@ -2,6 +2,8 @@
     package="com.agnellusx1.travel_ex">
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
    <application
         android:label="travel_ex"
         android:icon="@mipmap/ic_launcher"
@@ -35,6 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+       <receiver android:name="com.agnellusx1.travel_ex">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED"/>
+           </intent-filter>
+       </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
