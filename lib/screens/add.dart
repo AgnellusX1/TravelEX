@@ -102,103 +102,116 @@ class _AddState extends State<Add> {
           title: Text("Add A New Adventure"),
         ),
         body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [Colors.blue, Colors.red])),
-          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: _image == null
-                    ? IconButton(
-                        onPressed: getImage,
-                        icon: Icon(
-                          Icons.add_photo_alternate_rounded,
-                          size: 50,
-                          color: Colors.white,
-                        ),
-                      )
-                    : GestureDetector(
-                        onTap: getImage,
-                        child: Image(
-                            height: 300,
-                            width: 300,
-                            fit: BoxFit.contain,
-                            image: FileImage(_image)),
-                      ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                  controller: _controllertitle,
-                  textAlign: TextAlign.center,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.all(Radius.circular(40))),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.blue),
-                          borderRadius: BorderRadius.all(Radius.circular(40))),
-                      hintText: "Name your Adventure",
-                      filled: true,
-                      fillColor: Colors.grey[200])),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: TextField(
-                  controller: _controllerdesc,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.all(Radius.circular(40))),
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.transparent),
-                          borderRadius: BorderRadius.all(Radius.circular(40))),
-                      hintText: "Describe it",
-                      filled: true,
-                      fillColor: Colors.grey[200])),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FloatingActionButton.extended(
-                label: Text("Add Adventure"),
-                onPressed: () {
-                  final title = _controllertitle.text;
-                  final desc = _controllerdesc.text;
+          child: SingleChildScrollView(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children:[
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: _image == null
+                          ? IconButton(
+                              onPressed: getImage,
+                              icon: Icon(
+                                Icons.add_photo_alternate_rounded,
+                                size: 50,
+                                color: Colors.white,
+                              ),
+                            )
+                          : GestureDetector(
+                              onTap: getImage,
+                              child: Image(
+                                  height: 300,
+                                  width: 300,
+                                  fit: BoxFit.contain,
+                                  image: FileImage(_image)),
+                            ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                        controller: _controllertitle,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.blue),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40))),
+                            hintText: "Name your Adventure",
+                            filled: true,
+                            fillColor: Colors.grey[200])),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                        controller: _controllerdesc,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40))),
+                            focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(40))),
+                            hintText: "Describe it",
+                            filled: true,
+                            fillColor: Colors.grey[200])),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: FloatingActionButton.extended(
+                      label: Text("Add Adventure"),
+                      onPressed: () {
+                        final title = _controllertitle.text;
+                        final desc = _controllerdesc.text;
 
-                  //Validation to make sure the Title and Description is not Empty
-                  if (title != "" && desc != "") {
-                    //  If not empty
-                    addAdventure(title, desc, base64);
+                        //Validation to make sure the Title and Description is not Empty
+                        if (title != "" && desc != "") {
+                          //  If not empty
+                          addAdventure(title, desc, base64);
 
-                    Fluttertoast.showToast(
-                        msg: "Added Memory",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                    Navigator.pop(context);
-                  } else {
-                    Fluttertoast.showToast(
-                        msg: "Don't be Shy",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0);
-                  }
-                },
-              ),
-            ),
-          ]),
+                          Fluttertoast.showToast(
+                              msg: "Added Memory",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          Navigator.pop(context);
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Don't be Shy",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                        }
+                      },
+                    ),
+                  ),
+                ]),
+          ),
         ));
   }
 }
