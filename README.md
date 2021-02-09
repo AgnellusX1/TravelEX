@@ -38,13 +38,13 @@ Overall ‘ TravelEX’ is your travelogue diary to store memories and pictures.
 
 2.Dashboard
 
-<img src="./Screenshots/2.png" width="400" height="800" />
+<img src="./Screenshots/3.png" width="400" height="800" />
 
 ***
 
 3.Add Memory Screen
 
-<img src="./Screenshots/3.png" width="400" height="800" />
+<img src="./Screenshots/2.png" width="400" height="800" />
 
 ***
 
