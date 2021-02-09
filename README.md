@@ -3,7 +3,7 @@
 # TravelEX
 ## A Diary for the Travellers
 ### About the Project
-A cross platform application that allows users to capture memories on their travel adventures, add images as well as location. As well as allow them to keep a track of their ‘Memories’.
+A cross platform application that allows users to capture memories on their travel adventures, add images as well as location. It also allow travellers to keep a track of their ‘Memories’.
 
 Overall ‘ TravelEX’ is your travelogue diary to store memories and pictures.
 
