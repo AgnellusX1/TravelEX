@@ -24,7 +24,7 @@ Overall ‘ TravelEX’ is your travelogue diary to store memories and pictures.
 
  - [Agnellus Fernandes ](https://www.linkedin.com/in/agnellus-fernandes-81232b192)
  
- -  [Sancia D'cunha](https://www.linkedin.com/in/sancia-dcunha-291a94194)
+ - [Sancia D'cunha](https://www.linkedin.com/in/sancia-d-cunha-291a94194)
 
   - [Anisha Fernandes](https://www.linkedin.com/in/anisha-fernandes-9063651a1)
 ## Screenshots
