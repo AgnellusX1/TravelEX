@@ -1,16 +1,68 @@
-# travel_ex
+<a href="url"><img src="Screenshots/travelex.gif" align="center" height="150" width="150" ></a>
 
-A Diary For the Travellers
+# TravelEX
+## A Diary for the Travellers
+### About the Project
+A cross platform application that allows users to capture memories on their travel adventures, add images as well as location. As well as allow them to keep a track of their ‘Memories’.
 
-## Getting Started
+Overall ‘ TravelEX’ is your travelogue diary to store memories and pictures.
 
-This project is a starting point for a Flutter application.
+**FEATURES**
 
-A few resources to get you started if this is your first Flutter project:
+ - Cross Platform Support (Works on both Android and iOS)
+ - Light-weight and Interattive UI
+ - Add an Image for each Memory, from the Gallery
+ - Local Database
+ - In-Built Database encryption
+ - Real Time Location capture
+ - Automatic System date and time capture
+ - Permission Request, for Location and Storage Services
+ - Push Notifications
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Developers**
+
+ - [Agnellus Fernandes ](https://www.linkedin.com/in/agnellus-fernandes-81232b192)
+ 
+ -  [Sancia D'cunha](https://www.linkedin.com/in/sancia-dcunha-291a94194)
+
+  - [Anisha Fernandes](https://www.linkedin.com/in/anisha-fernandes-9063651a1)
+## Screenshots
+
+
+1.Login Page
+
+<img src="./Screenshots/1.png" width="400" height="800" />
+
+***
+
+2.Dashboard
+
+<img src="./Screenshots/2.png" width="400" height="800" />
+
+***
+
+3.Add Memory Screen
+
+<img src="./Screenshots/3.png" width="400" height="800" />
+
+***
+
+4.Delete Memory
+
+<img src="./Screenshots/4.png" width="400" height="800" />
+
+***
+**Tools used**  
+
+ - Android Studio (Obviously)
+ - [Dart Programming Language](https://dart.dev/)
+ - [Hive BD](https://pub.dev/packages/hive)
+ - [Image_picker](https://pub.dev/packages/image_picker)
+ - [Flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+ - [geolocator](https://pub.dev/packages/geolocator)
+ - [geocoder](https://pub.dev/packages/geocoder)
+ - [path_provider](https://pub.dev/packages/path_provider)
+ - [image](https://pub.dev/packages/image)
+ - [fluttertoast](https://pub.dev/packages/fluttertoast)
+ - [google_fonts](https://pub.dev/packages/google_fonts)
