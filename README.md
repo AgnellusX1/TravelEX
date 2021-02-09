@@ -1,4 +1,4 @@
-<a href="url"><img src="Screenshots/travelex.gif" align="center" height="150" width="150" ></a>
+<a href="url"><img src="Screenshots/travelex.gif" height="150" width="150" ></a>
 
 # TravelEX
 ## A Diary for the Travellers
@@ -57,9 +57,9 @@ Overall ‘ TravelEX’ is your travelogue diary to store memories and pictures.
 
  - Android Studio (Obviously)
  - [Dart Programming Language](https://dart.dev/)
- - [Hive BD](https://pub.dev/packages/hive)
- - [Image_picker](https://pub.dev/packages/image_picker)
- - [Flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+ - [Hive database](https://pub.dev/packages/hive)
+ - [image_picker](https://pub.dev/packages/image_picker)
+ - [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
  - [geolocator](https://pub.dev/packages/geolocator)
  - [geocoder](https://pub.dev/packages/geocoder)
  - [path_provider](https://pub.dev/packages/path_provider)
